@@ -13,8 +13,12 @@ import javax.imageio.ImageIO;
 
 public class ConvertidorImagenes {
     public static void main(String[] args) {
+        final int IMAGE_WIDTH = 300;
+        final int IMAGE_HEIGHT = 300;
+        final String EXTENSION = "jpg";
+
         // Directorio de las imágenes PNG
-        String directorioImagenes = "C:\\Users\\SyD Colombia SA\\Desktop\\png";
+        String directorioImagenes = "C:\\Users\\SyD Colombia SA\\Desktop\\z";
 
         // Directorio de salida para las imágenes convertidas
         String directorioSalida = "C:\\Users\\SyD Colombia SA\\Desktop\\n";
@@ -38,25 +42,24 @@ public class ConvertidorImagenes {
                     BufferedImage imagen = ImageIO.read(archivo);
 
                     // Crear una nueva imagen con fondo blanco
-                    BufferedImage imagenRedimensionada = new BufferedImage(300, 300, BufferedImage.TYPE_INT_RGB);
+                    BufferedImage imagenRedimensionada = new BufferedImage(IMAGE_WIDTH, IMAGE_HEIGHT, BufferedImage.TYPE_INT_RGB);
                     Graphics2D g2d = imagenRedimensionada.createGraphics();
                     g2d.setColor(Color.WHITE);
-                    g2d.fillRect(0, 0, 300, 300);
+                    g2d.fillRect(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
                     g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-                    g2d.drawImage(imagen, 0, 0, 300, 300, null);
+                    g2d.drawImage(imagen, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT, null);
                     g2d.dispose();
 
                     // Obtener el nombre del archivo sin la extensión
                     String nombreArchivo = archivo.getName().replaceFirst("[.][^.]+$", "");
-                    
                     nombreArchivo = nombreArchivo.replace("-1", "");
 
                     // Guardar la imagen convertida en formato JPEG
-                    String rutaSalida = directorioSalida + File.separator + nombreArchivo + ".jpg";
-                    ImageIO.write(imagenRedimensionada, "jpg", new File(rutaSalida));
-
-                    System.out.println("yes");
+                    String rutaSalida = directorioSalida + File.separator + nombreArchivo + "." + EXTENSION;
+                    ImageIO.write(imagenRedimensionada, EXTENSION, new File(rutaSalida));
                 } catch (IOException e) {
+                    System.err.println("Error al procesar el archivo: " + archivo.getName());
+                    e.printStackTrace();
                 }
             }
         }
