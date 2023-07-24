@@ -69,3 +69,4 @@ public class ConvertidorImagenes {
 }
 
 // Vladimir Estrada.
+// v.2.0.0
