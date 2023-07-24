@@ -68,4 +68,4 @@ public class ConvertidorImagenes {
     }
 }
 
-// Vladimir Estrada.
+// Vladimir Estrada..
