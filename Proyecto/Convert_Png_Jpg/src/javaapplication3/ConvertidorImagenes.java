@@ -59,7 +59,6 @@ public class ConvertidorImagenes {
                     ImageIO.write(imagenRedimensionada, EXTENSION, new File(rutaSalida));
                 } catch (IOException e) {
                     System.err.println("Error al procesar el archivo: " + archivo.getName());
-                    e.printStackTrace();
                 }
             }
         }
